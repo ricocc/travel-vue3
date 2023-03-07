@@ -23,31 +23,31 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import CommonGallary from 'common/gallary/Gallary'
 import FadeAnimation from 'common/fade/FadeAnimation'
 export default {
   name: 'DetailBanner',
+  components: {
+    CommonGallary,
+    FadeAnimation
+  },
   props: {
     sightName: String,
     bannerImg: String,
     bannerImgs: Array
   },
-  data () {
-    return {
-      showGallary: false
+
+  setup(){
+    const showGallary = ref(false)
+
+    function handleBannerClick() {
+      showGallary.value = true
     }
-  },
-  methods: {
-    handleBannerClick () {
-      this.showGallary = true
-    },
-    handleGallaryClose () {
-      this.showGallary = false
+    function handleGallaryClose() {
+      showGallary.value = false
     }
-  },
-  components: {
-    CommonGallary,
-    FadeAnimation
+    return { showGallary, handleBannerClick, handleGallaryClose }
   }
 }
 </script>
